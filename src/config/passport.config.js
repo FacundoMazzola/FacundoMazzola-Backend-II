@@ -1,11 +1,13 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
-import { UserModel } from "../dao/models/user.model.js";
 import { createHash, isValidPassword } from "../utils/hash.js";
 import dotenv from "dotenv";
+import UserRepository from "../repositories/user.repository.js";
 
 dotenv.config();
+
+const userRepository = new UserRepository();
 
 export const initializePassport = () => {
 
@@ -14,15 +16,13 @@ export const initializePassport = () => {
         { passReqToCallback: true, usernameField: "email" },
         async (req, username, password, done) => {
             try {
-                console.log("Register body:", req.body); // 🔹 debug
-
                 const { first_name, last_name, age } = req.body;
 
                 if (!first_name || !last_name || !age || !username || !password) {
                     return done(null, false, { message: "Faltan datos obligatorios" });
                 }
 
-                const exists = await UserModel.findOne({ email: username });
+                const exists = await userRepository.getByEmail(username);
                 if (exists) return done(null, false, { message: "El usuario ya existe" });
 
                 const newUser = {
@@ -33,7 +33,7 @@ export const initializePassport = () => {
                     password: createHash(password)
                 };
 
-                const result = await UserModel.create(newUser);
+                const result = await userRepository.create(newUser);
                 return done(null, result);
 
             } catch (error) {
@@ -47,7 +47,7 @@ export const initializePassport = () => {
         { usernameField: "email" },
         async (username, password, done) => {
             try {
-                const user = await UserModel.findOne({ email: username });
+                const user = await userRepository.getByEmail(username);
                 if (!user) return done(null, false, { message: "Usuario no encontrado" });
 
                 if (!isValidPassword(user, password))

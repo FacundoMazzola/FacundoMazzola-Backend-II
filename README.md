@@ -1,21 +1,18 @@
-# Backend II – Entrega N°1
+# Backend II - Proyecto Final
 
-## Proyecto: Ecommerce – Sistema de Usuarios y Autenticación
-
-### Descripción
-Este proyecto implementa un **CRUD de usuarios**, junto con **registro, login y autenticación mediante JWT**, usando **Node.js, Express, MongoDB y Passport.js**.  
-Incluye la ruta `/current` para validar el usuario logueado y devolver sus datos asociados al token.
+## 📌 Descripción
+Servidor backend desarrollado con Node.js y Express, utilizando MongoDB como base de datos.  
+Incluye autenticación con JWT, autorización por roles, patrón Repository, DTO, recuperación de contraseña y lógica de compra de ecommerce.
 
 ---
 
-### Tecnologías
-- Node.js v22
-- Express v5
-- MongoDB / Mongoose
-- Passport.js (Local + JWT)
-- bcrypt (hash de contraseñas)
-- JSON Web Tokens (JWT)
-- dotenv
+## 🚀 Tecnologías utilizadas
+- Node.js
+- Express
+- MongoDB (Mongoose)
+- Passport
+- JWT
+- Nodemailer
 
 ---
 

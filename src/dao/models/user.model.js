@@ -30,7 +30,18 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         default: "user"
+    },
+
+    //(para recuperación de contraseña)
+    resetPasswordToken: {
+        type: String,
+        default: null
+    },
+    resetPasswordExpires: {
+        type: Date,
+        default: null
     }
+
 });
 
 export const UserModel = mongoose.model(userCollection, userSchema);
