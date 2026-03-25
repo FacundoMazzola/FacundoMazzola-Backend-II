@@ -1,12 +1,12 @@
 # Backend II - Proyecto Final
 
-## 📌 Descripción
+## Descripción
 Servidor backend desarrollado con Node.js y Express, utilizando MongoDB como base de datos.  
 Incluye autenticación con JWT, autorización por roles, patrón Repository, DTO, recuperación de contraseña y lógica de compra de ecommerce.
 
 ---
 
-## 🚀 Tecnologías utilizadas
+## Tecnologías utilizadas
 - Node.js
 - Express
 - MongoDB (Mongoose)
